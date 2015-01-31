@@ -15,6 +15,6 @@ require([
 
 		setInterval(function() {
 			ui.updateChart(time++);
-		}, 1000);
+		}, 3000);
 		
 	});
