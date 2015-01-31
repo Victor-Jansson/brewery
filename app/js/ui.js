@@ -8,7 +8,7 @@ define(["libs/chartjs/Chart", "js/api"], function(Chart, api) {
 		var ctx = $("#myChart").get(0).getContext("2d");	
 		var data = api.getFullGraph();
 
-		myLineChart = new Chart(ctx).Line(data, {scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1, scaleSteps: 30});
+		myLineChart = new Chart(ctx).Line(data, {scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1, scaleSteps: 30, pointDot: false});
 	}
 
 	function updateChart() {
