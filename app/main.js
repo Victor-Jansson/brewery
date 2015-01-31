@@ -11,10 +11,9 @@ require([
 	], function($, Chart, ui) {
 		
 		ui.initChart();
-		var time = 0;
 
 		setInterval(function() {
-			ui.updateChart(time++);
+			ui.updateChart();
 		}, 3000);
 		
 	});

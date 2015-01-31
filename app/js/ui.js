@@ -2,7 +2,7 @@ define(["libs/chartjs/Chart", "js/api"], function(Chart, api) {
 	var myLineChart;
 
 	Chart.defaults.global.animation = false;
-	Chart.defaults.global.responsive = false;
+	Chart.defaults.global.responsive = true;
 
 	function initChart(){
 		var ctx = $("#myChart").get(0).getContext("2d");	
