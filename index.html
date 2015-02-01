@@ -28,11 +28,81 @@
 
     <div class="container">
       <div class="starter-template">
-				<div id="view">
+				<ul class="nav nav-pills">
+					<li role="presentation" data-bind="css: {active: activePage() === 1}, click: activePage.bind('',1)">
+						<a href="#">Graf</a>
+					</li>
+					<li role="presentation" data-bind="css: {active: activePage() === 2}, click: activePage.bind('',2)">
+						<a href="#">Inställningar</a>
+					</li>
+				</ul>
+
+				<div id="view" data-bind="visible: activePage() === 1">
 					<canvas id="myChart"></canvas>
 				</div>
-				<button type="button" class="btn btn-primary">Show Temp</button>
-				<button type="button" class="btn btn-primary">Show Value</button>
+
+				<!-- page2 -->
+				<div id="settings" data-bind="visible: activePage() === 2">
+					<table class="table table-striped">
+						<thead>
+							<th>Temp</th>
+							<th>Time</th>
+							<th>Remove</th>
+						</thead>
+						<tbody>
+							<!-- ko foreach: settings -->
+	    				<tr>
+	  						<td><div contentEditable=true data-bind="text: temp"></td>
+	  						<td><div contentEditable=true data-bind="text: time"></td>
+	  						<td><span class="glyphicon glyphicon-remove" data-bind="click: $root.deleteRow.bind($index)"></span></td>
+	  					</tr>
+	    				<!-- /ko -->
+	  				</tbody>
+					</table>
+					<button type="button" class="btn btn-default" data-bind="click: showTempModal">Add row</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="tempModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title" id="myModalLabel">Enter temperature</h4>
+					      </div>
+					      <div class="modal-body">
+					        <input data-bind="value: temporalTemp" id="tempInput" type="number"></input>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary" data-bind="click: showTimeModal" id="tempOkBtn">OK</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<!-- /Modal -->
+
+					<!-- Modal -->
+					<div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title" id="myModalLabel">Enter time</h4>
+					      </div>
+					      <div class="modal-body">
+					        <input data-bind="value: temporalTime" id="timeInput" type="number"></input>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary" data-bind="click: storeRow" id="timeOkBtn">OK</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<!-- /Modal -->
+
+				</div>
+
       </div>
     </div>
   </body>

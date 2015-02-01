@@ -1,20 +1,20 @@
 define(["libs/chartjs/Chart", "js/api"], function(Chart, api) {	
 	var myLineChart;
 
-	Chart.defaults.global.animation = false;
-	Chart.defaults.global.responsive = true;
+	var chartOptions = {
+		animation: false,
+		responsive: true,
 
+		pointDot: false,
+		showTooltips: false,
+
+	}
+	
 	function initChart(func){
 		var ctx = $("#myChart").get(0).getContext("2d");	
+		
 		api.getFullGraph(function(data) {
-			myLineChart = new Chart(ctx).Line(data, 
-				{scaleOverride: true, 
-					scaleStartValue: 0, 
-					scaleStepWidth: 1, 
-					scaleSteps: 30, 
-					pointDot: false,
-					showTooltips: false,
-				});
+			myLineChart = new Chart(ctx).Line(data, chartOptions);
 
 			return func();
 		});

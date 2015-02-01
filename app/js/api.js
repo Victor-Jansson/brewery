@@ -37,7 +37,7 @@ define([], function() {
 			dataType: "text",
 			success: function(response) {
 				pos = JSON.parse(response);
-				var value = [pos[0] % 25, pos[1] % 25];
+				var value = [pos[0] % 25, pos[1] % 25 +100];
 				
 				return func(value);
 			}
