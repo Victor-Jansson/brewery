@@ -10,10 +10,13 @@ require([
 	"js/ui"
 	], function($, Chart, ui) {
 		
-		ui.initChart();
+		ui.initChart(function() {
+			
+			// Intervallic update of chart after init
+			setInterval(function() {
+				ui.updateChart();
+			}, 3000);	
+		});
 
-		setInterval(function() {
-			ui.updateChart();
-		}, 3000);
 		
 	});

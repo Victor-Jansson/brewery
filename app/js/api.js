@@ -1,6 +1,6 @@
 define([], function() {
-	function getFullGraph() {
-		return {	
+	function getFullGraph(func) {
+		return func({	
     	labels: ['', '', '', '', '', '', '', '', '', ''],
     	datasets: [
         {
@@ -25,7 +25,7 @@ define([], function() {
 
         }
     	]
-    }
+    });
 	}
 
 	function getLatestPoints(func) {

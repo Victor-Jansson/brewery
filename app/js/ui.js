@@ -4,11 +4,20 @@ define(["libs/chartjs/Chart", "js/api"], function(Chart, api) {
 	Chart.defaults.global.animation = false;
 	Chart.defaults.global.responsive = true;
 
-	function initChart(){
+	function initChart(func){
 		var ctx = $("#myChart").get(0).getContext("2d");	
-		var data = api.getFullGraph();
+		api.getFullGraph(function(data) {
+			myLineChart = new Chart(ctx).Line(data, 
+				{scaleOverride: true, 
+					scaleStartValue: 0, 
+					scaleStepWidth: 1, 
+					scaleSteps: 30, 
+					pointDot: false,
+					showTooltips: false,
+				});
 
-		myLineChart = new Chart(ctx).Line(data, {scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1, scaleSteps: 30, pointDot: false});
+			return func();
+		});
 	}
 
 	function updateChart() {
