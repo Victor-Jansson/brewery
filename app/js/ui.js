@@ -27,10 +27,14 @@ define(["libs/chartjs/Chart", "js/api"], function(Chart, api) {
 		});
 	}
 
-	return {
-		initChart: initChart,
-		updateChart: updateChart
+	function getMyLineChart() {
+		return myLineChart;
 	}
 
+	return {
+		initChart: initChart,
+		updateChart: updateChart,
+		getMyLineChart: getMyLineChart
+	}
 	
 });
