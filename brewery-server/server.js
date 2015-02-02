@@ -1,32 +1,32 @@
 var express = require('express');
-var graph = require('./modules/graphs.js');
+var brewery = require('./modules/brewery.js');
 var app = express();
 
 app.get('/server/start', function (req, res) {
-  graph.startServer();
+  brewery.startServer();
   res.send('OK - Server started');
 });
 
 app.get('/server/stop', function (req, res) {
-  graph.stopServer();
+  brewery.stopServer();
   res.send('OK - Server stopped');
 });
 
 app.get('/server/reset', function (req, res) {
-  graph.resetServer();
+  brewery.resetServer();
   res.send('OK - Server reset');
 });
 
 app.get('/server/status', function (req, res) {
-  res.send(graph.serverStatus().toString());
+  res.send(brewery.serverStatus().toString());
 });
 
 app.get('/server/fulloutput', function (req, res) {
-  res.send(graph.getFullOutput().toString());
+  res.send(brewery.getFullOutput().toString());
 });
 
 app.get('/server/output', function(req, res) {
-	res.send(graph.getLatestOutputValue().toString());
+	res.send(brewery.getLatestOutputValue().toString());
 });
 
 var server = app.listen(3000, function () {
@@ -34,7 +34,7 @@ var server = app.listen(3000, function () {
   var host = server.address().address
   var port = server.address().port
 
-  console.log('Example app listening at http://%s:%s', host, port);
+  console.log('Brewery server listening at http://%s:%s', host, port);
 
 });
 
