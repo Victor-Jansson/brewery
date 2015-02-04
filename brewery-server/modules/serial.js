@@ -3,7 +3,7 @@ var SerialPort = serialport.SerialPort;
 
 var sp = new SerialPort("/dev/ttyUSB0", {
   baudrate: 9600,
-  parser: serialport.parsers.readline("\n")
+  parser: serialport.parsers.raw
 });
 
 exports.initSerialPort = function(callback) {
@@ -18,7 +18,7 @@ exports.initSerialPort = function(callback) {
 }
 
 exports.readSerial = function(callback) {
-  sp.write('GT 0', function(res) {
+  sp.write('GT 0\r', function(res) {
     console.log(res);
     callback(res);
   });
