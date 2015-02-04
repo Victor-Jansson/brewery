@@ -38,9 +38,10 @@ var server = app.listen(3000, function () {
   var host = server.address().address
   var port = server.address().port
 
-  brewery.startServer();
-
-  serial.initSerialPort(serial.testCommands);
+  serial.initSerialPort(function() {
+    brewery.startServer();
+  });
+  
 
   console.log('Brewery server listening at http://%s:%s', host, port);
 

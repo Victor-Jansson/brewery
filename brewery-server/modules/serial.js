@@ -16,8 +16,9 @@ exports.initSerialPort = function(callback) {
   });
 }
 
-exports.testCommands = function() {
+exports.readSerial = function(callback) {
   sp.write('GP', function(err, res) {
     console.log(res);
+    callback(res);
   });
 }

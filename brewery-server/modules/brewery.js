@@ -48,7 +48,9 @@ function startServer() {
 }
 
 function addValueToOutput() {
-	outputGraph.push(serverTime);
+	serial.serialRead(function(data) {
+		outputGraph.push(data);
+	});
 }
 
 function addValueToInput() {
