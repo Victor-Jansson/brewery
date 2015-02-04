@@ -16,5 +16,6 @@ exports.initSerialPort = function(callback) {
 }
 
 exports.writeSerial = function(cmd) {
+  console.log('write:');
   sp.write(cmd);
 }
