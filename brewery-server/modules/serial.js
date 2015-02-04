@@ -10,6 +10,12 @@ exports.initSerialPort = function(callback) {
     console.log("here: "+data);
   });
 
+  sp.on("open", function() {
+    setInterval(function() {
+      sp.write('GP');
+    }, 3000);
+  })
+
   sp.on("error", function() {
     console.log('error');
   });
