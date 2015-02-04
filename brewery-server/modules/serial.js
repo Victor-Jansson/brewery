@@ -8,9 +8,13 @@ var sp = new SerialPort("/dev/ttyUSB0", {
 exports.initSerialPort = function(callback) {
   sp.on("data", function (data) {
     console.log("here: "+data);
+    callback();
   });
 
-  callback();
+  sp.on("error", function() {
+    console.log('feeel');
+  })
+
 }
 
 exports.writeSerial = function(cmd) {
