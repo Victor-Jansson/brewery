@@ -11,7 +11,7 @@ exports.initSerialPort = function(callback) {
   });
 
   sp.on("open", function() {
-    setInterval(writeSerial('GP'), 3000);
+    setInterval(writeSerial('GP'), 3000).bind(this);
   })
 
   sp.on("error", function() {
