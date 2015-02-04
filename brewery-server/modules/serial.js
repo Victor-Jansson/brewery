@@ -13,6 +13,6 @@ exports.initSerialPort = function(callback) {
   callback();
 }
 
-exports.writeSerial(cmd) {
+exports.writeSerial = function(cmd) {
   sp.write(cmd);
 }
