@@ -9,8 +9,8 @@ exports.initSerialPort = function() {
   sp.on("data", function (data) {
     console.log("here: "+data);
   });
-}
 
-exports.writeSerial = function(cmd) {
-  sp.write(cmd);
+  sp.on("open", function () {
+    sp.write('GP');
+  })
 }
