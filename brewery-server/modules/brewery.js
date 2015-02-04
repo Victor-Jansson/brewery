@@ -1,3 +1,5 @@
+var serial = require("./serial.js");
+
 var serverRunning = false;
 var freq = 1000 // frequency in ms
 var serverTime = 0;
