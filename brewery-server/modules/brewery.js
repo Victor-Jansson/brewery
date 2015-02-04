@@ -22,7 +22,10 @@ exports.serverStatus = function() {
 }
 
 exports.getLatestOutputValue = function() {
-	return outputGraph[outputGraph.length - 1];
+	return {
+		outputValue: outputGraph[outputGraph.length - 1],
+		inputValue: inputGraph[inputGraph.length - 1]
+	}
 }
 
 exports.getFullOutput = function() {
@@ -35,6 +38,7 @@ function startServer() {
 
 		setInterval(function() {
 			addValueToOutput();
+			addValueToInput();
 			// read temp on comp
 			// add temp to array
 
@@ -45,6 +49,10 @@ function startServer() {
 
 function addValueToOutput() {
 	outputGraph.push(serverTime);
+}
+
+function addValueToInput() {
+	inputGraph.push(10);
 }
 
 function resetServer() {

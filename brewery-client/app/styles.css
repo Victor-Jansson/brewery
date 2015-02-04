@@ -15,6 +15,14 @@ th {
   text-align: center;
 }
 
+.green {
+  color: green !important;
+}
+
+.red {
+  color: red !important;
+}
+
 #view {
 	margin: 20px 0;
 	width: 100%;

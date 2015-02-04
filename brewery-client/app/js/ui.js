@@ -1,4 +1,4 @@
-define(["libs/chartjs/Chart", "js/api"], function(Chart, api) {	
+define(["libs/chartjs/Chart", "js/api", "js/viewModel"], function(Chart, api, viewModel) {
 	var myLineChart;
 
 	var chartOptions = {
@@ -9,10 +9,10 @@ define(["libs/chartjs/Chart", "js/api"], function(Chart, api) {
 		showTooltips: false,
 
 	}
-	
+
 	function initChart(func){
-		var ctx = $("#myChart").get(0).getContext("2d");	
-		
+		var ctx = $("#myChart").get(0).getContext("2d");
+
 		api.getFullGraph(function(data) {
 			myLineChart = new Chart(ctx).Line(data, chartOptions);
 
@@ -21,10 +21,15 @@ define(["libs/chartjs/Chart", "js/api"], function(Chart, api) {
 	}
 
 	function updateChart() {
-
 		api.getLatestPoints(function(data) {
-			myLineChart.addData(data, '');	
+			myLineChart.addData(data, '');
 		});
+	}
+
+	function getServerStatus() {
+		api.getServerStatus(function(res) {
+			viewModel.setServerStatus(res);
+		})
 	}
 
 	function getMyLineChart() {
@@ -34,7 +39,8 @@ define(["libs/chartjs/Chart", "js/api"], function(Chart, api) {
 	return {
 		initChart: initChart,
 		updateChart: updateChart,
-		getMyLineChart: getMyLineChart
+		getMyLineChart: getMyLineChart,
+		getServerStatus: getServerStatus
 	}
-	
+
 });

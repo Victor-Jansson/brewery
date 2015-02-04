@@ -2,6 +2,9 @@ define(["jquery", "knockout", "js/ui"], function($, ko, ui) {
 	var viewModel = {
 		activePage: ko.observable(1),
 		settings: ko.observableArray(),
+		server: {
+			status: ko.observable('N/A')
+		},
 
 		modal: {
 			askForTemp: function() {
@@ -37,7 +40,7 @@ define(["jquery", "knockout", "js/ui"], function($, ko, ui) {
 	}
 
 	function storeRow() {
-		viewModel.settings.push({temp: viewModel.modal.temporalTemp(), time: viewModel.modal.temporalTime()});	
+		viewModel.settings.push({temp: viewModel.modal.temporalTemp(), time: viewModel.modal.temporalTime()});
 	}
 
 	function deleteRow(index) {
@@ -45,9 +48,9 @@ define(["jquery", "knockout", "js/ui"], function($, ko, ui) {
 	}
 
 	function initKnockout() {
-		ko.applyBindings(viewModel);	
+		ko.applyBindings(viewModel);
 	}
-	
+
 	function initModals() {
 		$("#tempInput").keyup(function(event){
     	if(event.keyCode == 13){
@@ -61,9 +64,15 @@ define(["jquery", "knockout", "js/ui"], function($, ko, ui) {
     	}
 		});
 	}
+
+	function setServerStatus(status) {
+		viewModel.server.status(status);
+	}
+	
 	return {
 		initKnockout: initKnockout,
-		initModals: initModals
+		initModals: initModals,
+		setServerStatus: setServerStatus
 	}
 
 })

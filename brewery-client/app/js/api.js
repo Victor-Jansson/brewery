@@ -1,6 +1,8 @@
 define([], function() {
+	var serverUrl = "http://localhost:3000/";
+
 	function getFullGraph(func) {
-		return func({	
+		return func({
     	labels: ['', '', '', '', '', '', '', '', '', ''],
     	datasets: [
         {
@@ -31,21 +33,36 @@ define([], function() {
 	function getLatestPoints(func) {
 		$.ajax( {
 			type: "GET",
-			url: "http://kanqin-backend.nodejitsu.com:80/?query=1",
+			url: serverUrl + "server/output",
 			contentType: "application/json",
 			data: "",
 			dataType: "text",
 			success: function(response) {
 				pos = JSON.parse(response);
-				var value = [pos[0] % 25, pos[1] % 25 +100];
-				
+				var value = [pos.inputValue % 25, pos.outputValue % 25];
+
 				return func(value);
 			}
     });
 	}
 
+	function getServerStatus(func) {
+		$.ajax( {
+			type: "GET",
+			url: serverUrl + "server/status",
+			contentType: "application/json",
+			data: "",
+			dataType: "text",
+			success: function(res) {
+				res === "true" ? res = true : res = false
+				return func(res);
+			}
+		});
+	}
+
 	return {
 		getFullGraph: getFullGraph,
-		getLatestPoints: getLatestPoints
+		getLatestPoints: getLatestPoints,
+		getServerStatus: getServerStatus
 	}
 })

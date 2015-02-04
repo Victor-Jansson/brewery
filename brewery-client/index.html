@@ -24,6 +24,7 @@
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Brewery Supervisor</a>
+          <div class="navbar-brand glyphicon glyphicon-flash" data-bind="css:{green: server.status, red: !server.status}"></div>
         </div>
       </div>
     </nav>
@@ -74,16 +75,16 @@
 					        <h4 class="modal-title" id="timeModalLabel" data-bind="visible:$root.modal.showTimeInput">Enter time</h4>
 					      </div>
 					      <div class="modal-body">
-					      	
+
 					      	<div data-bind="visible:$root.modal.showTempInput">
 					        	<input data-bind="value: $root.modal.temporalTemp" id="tempInput" type="number"></input>
 					        	<button type="button" class="btn btn-primary" data-bind="click: $root.modal.askForTime" id="tempOkBtn">OK</button>
 					        </div>
 
-					        <div data-bind="visible:$root.modal.showTimeInput"> 
+					        <div data-bind="visible:$root.modal.showTimeInput">
 					        	<input data-bind="value: $root.modal.temporalTime" id="timeInput" type="number"></input>
 					        	<button type="button" class="btn btn-primary" data-bind="click: $root.modal.storeRow" id="timeOkBtn">OK</button>
-					        </div>	
+					        </div>
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

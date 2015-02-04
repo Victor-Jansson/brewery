@@ -1,6 +1,9 @@
 var express = require('express');
+var cors = require('cors');
 var brewery = require('./modules/brewery.js');
 var app = express();
+
+app.use(cors());
 
 app.get('/server/start', function (req, res) {
   brewery.startServer();
@@ -26,7 +29,7 @@ app.get('/server/fulloutput', function (req, res) {
 });
 
 app.get('/server/output', function(req, res) {
-	res.send(brewery.getLatestOutputValue().toString());
+	res.send(brewery.getLatestOutputValue());
 });
 
 var server = app.listen(3000, function () {
@@ -34,7 +37,8 @@ var server = app.listen(3000, function () {
   var host = server.address().address
   var port = server.address().port
 
+  brewery.startServer();
+
   console.log('Brewery server listening at http://%s:%s', host, port);
 
 });
-

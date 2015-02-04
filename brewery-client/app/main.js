@@ -17,17 +17,19 @@ require([
 	"js/ui",
 	"js/viewModel"
 	], function($, ko, bootstrap, Chart, ui, viewModel) {
-		
+
 		viewModel.initKnockout();
 		viewModel.initModals();
+
+		setInterval(ui.getServerStatus(), 10000); //Check status every 10s sec
 
 		ui.initChart(function() {
 
 			// Intervallic update of chart after init
 			setInterval(function() {
 				ui.updateChart();
-			}, 3000);	
+			}, 3000);
 		});
 
-		
+
 	});
