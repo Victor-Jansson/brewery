@@ -19,6 +19,7 @@ exports.initSerialPort = function(callback) {
 exports.readSerial = function(callback) {
   sp.write('GT', function(err, res) {
     console.log(res);
+    console.log(err);
     callback(res);
   });
 }
