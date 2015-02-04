@@ -13,9 +13,6 @@ exports.initSerialPort = function(callback) {
   sp.on("error", function() {
     console.log('error');
   });
-
-  setTimeout(callback(), 2000);
-
 }
 
 exports.writeSerial = function(cmd) {

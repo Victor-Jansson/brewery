@@ -40,9 +40,10 @@ var server = app.listen(3000, function () {
 
   brewery.startServer();
 
-  serial.initSerialPort(function() {
-    serial.writeSerial('GP');
-  });
+  serial.initSerialPort();
+
+  setTimeout(serial.writeSerial('GP'), 2000);
+
 
   console.log('Brewery server listening at http://%s:%s', host, port);
 
