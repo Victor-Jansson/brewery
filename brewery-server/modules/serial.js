@@ -8,7 +8,7 @@ var sp = new SerialPort("/dev/ttyUSB0", {
 exports.initSerialPort = function(callback) {
   sp.on("data", function (data) {
     console.log("here: "+data);
-    callback();
+    setTimeout(callback(), 200);
   });
 
   sp.on("error", function() {
