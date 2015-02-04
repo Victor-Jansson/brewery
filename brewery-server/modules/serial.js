@@ -5,12 +5,14 @@ var sp = new SerialPort("/dev/ttyUSB0", {
   baudrate: 9600
 });
 
-exports.initSerialPort = function() {
+exports.initSerialPort = function(callback) {
   sp.on("data", function (data) {
     console.log("here: "+data);
   });
 
-  sp.on("open", function () {
-    sp.write('GP');
-  })
+  callback();
+}
+
+exports.writeSerial(cmd) {
+  sp.write(cmd);
 }
