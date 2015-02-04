@@ -5,6 +5,6 @@ var serialPort = new SerialPort("/dev/ttyUSB0", {
 
 exports.initSerialPort = function() {
   serialPort.on("data", function (data) {
-    sys.puts("here: "+data);
+    console.log("here: "+data);
   });
 }
