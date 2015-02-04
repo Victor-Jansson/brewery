@@ -1,5 +1,5 @@
 define([], function() {
-	var serverUrl = "http://localhost:3000/";
+	var serverUrl = "http://192.168.1.5:3000/";
 
 	function getFullGraph(func) {
 		return func({

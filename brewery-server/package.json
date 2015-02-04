@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.11.2",
-    "cors": "^2.5.3"
+    "cors": "^2.5.3",
+    "serialport": "^1.4.10"
   }
 }
