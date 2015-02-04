@@ -50,7 +50,7 @@ function startServer() {
 }
 
 function addValueToOutput() {
-	serial.serialRead(function(data) {
+	serial.readSerial(function(data) {
 		outputGraph.push(data);
 	});
 }
