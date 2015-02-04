@@ -1,6 +1,7 @@
 var express = require('express');
 var cors = require('cors');
 var brewery = require('./modules/brewery.js');
+var serial = require('./modules/serial.js');
 var app = express();
 
 app.use(cors());
