@@ -6,12 +6,11 @@ var sp = new SerialPort("/dev/ttyUSB0", {
 });
 
 exports.initSerialPort = function(callback) {
-  sp.on("data", function (data) {
-    console.log("Read: "+data);
-  });
 
   sp.on("open", function() {
-    setInterval(sp.write('GP'), 3000);
+    sp.write('GP', function(err, res) {
+      console.log(res);
+    });
   })
 
   sp.on("error", function() {
