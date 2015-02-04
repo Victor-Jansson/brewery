@@ -8,12 +8,16 @@ var sp = new SerialPort("/dev/ttyUSB0", {
 exports.initSerialPort = function(callback) {
 
   sp.on("open", function() {
-    sp.write('GP', function(err, res) {
-      console.log(res);
-    });
+    callback();
   })
 
   sp.on("error", function() {
     console.log('error');
+  });
+}
+
+exports.testCommands() {
+  sp.write('GP', function(err, res) {
+    console.log(res);
   });
 }
