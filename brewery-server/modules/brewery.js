@@ -8,59 +8,59 @@ var outputGraph = [];
 var graphLength = 50;
 
 exports.startServer = function() {
-	startServer();
+  startServer();
 }
 
 exports.stopServer = function() {
-	serverRunning = false;
+  serverRunning = false;
 }
 
 exports.resetServer = function() {
-	resetServer();
+  resetServer();
 }
 
 exports.serverStatus = function() {
-	return serverRunning;
+  return serverRunning;
 }
 
 exports.getLatestOutputValue = function() {
-	return {
-		outputValue: outputGraph[outputGraph.length - 1],
-		inputValue: inputGraph[inputGraph.length - 1]
-	}
+  return {
+    outputValue: outputGraph[outputGraph.length - 1],
+    inputValue: inputGraph[inputGraph.length - 1]
+  }
 }
 
 exports.getFullOutput = function() {
-	return outputGraph;
+  return outputGraph;
 }
 
 function startServer() {
-	if(!serverRunning) {
-		serverRunning = true;
+  if(!serverRunning) {
+    serverRunning = true;
 
-		setInterval(function() {
-			addValueToOutput();
-			addValueToInput();
-			// read temp on comp
-			// add temp to array
+    setInterval(function() {
+      addValueToOutput();
+      addValueToInput();
 
-			serverTime++ % graphLength;
-		}, freq);
-	}
+      serverTime++ % graphLength;
+    }, freq);
+  }
 }
 
 function addValueToOutput() {
-	serial.readSerial(function(data) {
-		outputGraph.push(data);
-	});
+  serial.readTemp0(function(data) {
+    outputGraph.push(data);
+  });
 }
 
 function addValueToInput() {
-	inputGraph.push(10);
+  serial.readTemp1(function(data) {
+    inputGraph.push(data);
+  });
 }
 
 function resetServer() {
-	serverTime = 0;
-	inputGraph = [];
-	outputGraph = [];
+  serverTime = 0;
+  inputGraph = [];
+  outputGraph = [];
 }
