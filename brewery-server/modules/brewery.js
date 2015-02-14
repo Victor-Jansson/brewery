@@ -41,8 +41,11 @@ function startServer() {
     setInterval(function() {
       addValueToOutput();
       addValueToInput();
+      serverTime++;
 
-      serverTime++ % graphLength;
+      if (serverTime > graphLength) {
+        resetServer();
+      }
     }, freq);
   }
 }

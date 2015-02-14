@@ -17,13 +17,9 @@ var latestValue = {
 };
 var lastCommand = "";
 
-
-var command = [];
-
 function saveTemperature(temp) {
   console.log(temp);
 }
-
 
 exports.initSerialPort = function(callback) {
 
@@ -36,7 +32,6 @@ exports.initSerialPort = function(callback) {
   });
 
   sp.on("data", function(res) {
-    console.log('data' ,res);
     switch(res) {
       case "GT 0": expectValue = true;
         lastCommand = "GT 0";
